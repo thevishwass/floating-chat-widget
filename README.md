@@ -1,32 +1,38 @@
-AmplifyEase Chatbot Widget
+```markdown
+# Floating Chat Widget
 
-A lightweight, embeddable floating chatbot widget built using vanilla JavaScript.
-Designed for SaaS websites to handle FAQs, capture leads, and forward free-form queries to a backend chat or AI API.
+A lightweight, embeddable floating chat widget built with vanilla JavaScript, designed for modern web applications that need guided conversations, lead capture, and backend-powered chat without framework overhead.
 
-This project focuses on clarity, state-driven logic, and zero framework dependency.
+This project emphasizes clean state management, predictable UI behavior, and easy extensibility.
 
-Features
+---
 
-Floating chat button with open and close behavior
+## Overview
 
-Expandable and collapsible chat window
+The Floating Chat Widget provides a reusable chat interface that can be embedded into any website. It supports menu-based interactions, contact workflows, and free-text conversations routed to a backend API.
 
-Menu-based guided conversation
+The entire widget is implemented **without external libraries**, making it fast, portable, and easy to understand.
 
-Quick reply buttons for common actions
+---
 
-Lead capture flow (Name and Email)
+## Key Features
 
-Free-text chat powered by backend API
+- 💬 Floating chat button with open and close behavior
+- 🪟 Expandable and collapsible chat window
+- 🗂️ Menu-driven conversation flow
+- ⚡ Quick reply buttons for common actions
+- 📧 Lead capture flow (name and email)
+- 🤖 Free-form chat with backend API integration
+- 🧩 Simple, readable state-based logic
+- 🚫 No frameworks or dependencies
 
-Simple state machine for conversation control
+---
 
-No external libraries or frameworks
+## Conversation Architecture
 
-Conversation Flow
+The chatbot operates using a **state-driven conversation model**. Each user interaction updates a single source of truth: `conversationState`.
 
-The chatbot operates using a state-based flow to keep logic predictable and easy to extend.
-
+```
 MENU
  ├── INFO (Pricing / Features)
  │     └── Contact Prompt
@@ -34,116 +40,136 @@ MENU
  │     ├── ASK_NAME
  │     └── ASK_EMAIL
  └── FREE_CHAT
+```
 
+This approach avoids deeply nested conditionals and makes future extensions straightforward.
 
-Each user interaction updates the conversationState, ensuring clean transitions and minimal edge cases.
+---
 
-Project Structure
-chatbot/
-├── index.html
-├── styles.css
-└── chatbot.js
+## Project Structure
 
+```
+chatbotWidget/
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── chatbot.js
+│
+├── backend/
+│   └── .gitkeep
+│
+├── .gitignore
+└── README.md
+```
 
-chatbot.js
-Contains all logic: state management, UI rendering, and API communication.
+### Folder Breakdown
 
-styles.css
-Handles layout, animations, and responsiveness.
+#### `frontend/`
+Contains the complete chatbot UI:
+- DOM creation
+- State handling
+- User interaction logic
+- API communication
 
-index.html
-Minimal markup required to load the widget.
+#### `backend/`
+Reserved for server-side logic (e.g. FastAPI, Node.js).  
+Currently tracked using `.gitkeep` until backend code is added.
 
-How It Works
+---
 
-User clicks the floating chat button
+## How It Works
 
-Chat window opens and shows main menu options
+1. User clicks the floating chat button
+2. Chat window opens with main menu options
+3. User selects a menu option or types a message
+4. Conversation state updates accordingly
+5. For free chat, the message is sent to a backend API
+6. Bot response is rendered dynamically in the UI
 
-User selects an option or enters free text
+All UI updates are handled **programmatically** for full control.
 
-Conversation state updates based on input
+---
 
-For free chat, the message is sent to a backend API
+## Backend API Integration
 
-Bot response is rendered in the UI
+Free-text messages are sent to a configurable backend endpoint.
 
-The logic is intentionally kept simple so it can be:
-
-debugged easily
-
-extended without refactoring
-
-understood by non-framework developers
-
-API Integration
-
-Free chat messages are sent to a backend endpoint:
-
+### Endpoint
+```
 POST http://127.0.0.1:8000/chat
+```
 
-Expected Request
+### Request Payload
+```json
 {
-  "message": "User query text"
+  "message": "User input text"
 }
+```
 
-Expected Response
+### Response Payload
+```json
 {
   "reply": "Bot response text"
 }
+```
 
+This backend can be powered by:
+- FastAPI
+- Node.js
+- AI / LLM services
+- Rule-based chat engines
 
-You can connect this endpoint to:
+---
 
-a FastAPI backend
+## Customization Guide
 
-an AI model
+You can easily modify:
 
-a rule-based support system
+- ✏️ Assistant name and branding text
+- 📋 Menu options and labels
+- 📚 Knowledge base responses
+- ✅ Input validation rules
+- 🔗 Backend API URL
+- 🎨 UI styles and animations
 
-Customization
+All core configurations are centralized for easy updates.
 
-You can easily customize:
+---
 
-Branding text (assistant name)
+## Why Vanilla JavaScript?
 
-Menu options
+- ✅ No framework lock-in
+- ⚡ Faster load time
+- 🌐 Easier embedding across platforms
+- 🎯 Full control over DOM and state
+- 🧩 Ideal for widgets and micro-frontends
 
-Knowledge base responses
+This project prioritizes **clarity over abstraction**.
 
-Validation rules
+---
 
-Backend API URL
+## Use Cases
 
-UI styling and animations
+- 🚀 SaaS landing pages
+- 📈 Lead generation widgets
+- 💬 Customer support interfaces
+- 🛠️ Internal tools
+- 🤖 AI-powered chat integrations
 
-All configurations are centralized and easy to modify.
+---
 
-Why Vanilla JavaScript?
+## Future Improvements
 
-No framework lock-in
+- 💾 Persistent chat history
+- 🔐 Authentication-based personalization
+- 🎨 Theming support
+- ♿ Accessibility enhancements
+- 🔌 WebSocket-based real-time responses
 
-Easy to embed on any website
+---
 
-Faster load time
+## License
 
-Full control over DOM and logic
-
-Ideal for widgets and micro-frontends
-
-Use Cases
-
-SaaS landing pages
-
-Internal tools
-
-Lead generation widgets
-
-Customer support assistants
-
-AI chat integrations
-
-License
-
-This project is open for personal and commercial use.
-Modify and extend it freely to fit your needs.# floating-chat-widget
+This project is open for personal and commercial use.  
+You are free to modify, extend, and integrate it into your own applications.
+```
