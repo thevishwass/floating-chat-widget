@@ -1,4 +1,3 @@
-```markdown
 # Floating Chat Widget
 
 A lightweight, embeddable floating chat widget built with vanilla JavaScript, designed for modern web applications that need guided conversations, lead capture, and backend-powered chat without framework overhead.
@@ -172,4 +171,3 @@ This project prioritizes **clarity over abstraction**.
 
 This project is open for personal and commercial use.  
 You are free to modify, extend, and integrate it into your own applications.
-```
